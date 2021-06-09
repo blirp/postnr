@@ -1,5 +1,36 @@
 # postnr - enkelt innbrudd i Hibernate Validator 6.1.x
 
+## API
+
+Søk i databasen over postnummer med en GET mot /postnr. Søket tar inntil fire parametre.
+
+| Parameter | Betydning |
+--- | --- |
+| pn | Postnummer |
+| ps | Poststed |
+| kn | Kommunenr |
+| k | Kommunenavn |
+
+Ex:
+```shell
+curl -s localhost:8080/postnr?pn=5230
+```
+
+Resultatet er en liste av poststeder som matcher søkekriteriene:
+
+```json
+[
+  {
+    "kommune": "Bergen",
+    "kommunenr": "4601",
+    "postnr": "5230",
+    "poststed": "Paradis"
+  }
+]
+```
+
+
+
 ## Demo ##
 
 Tre terminaler:
@@ -15,12 +46,9 @@ I terminal 1 kan man nå skrive vanlige bash-kommandore og eksekvere dem på mas
 Må bruke 6.1.x-versjonene.
 6.2.x og 7.0.x legger begrensning på EL-tolkningen og defaulter til å ikke kunne kalle metoder. Se detaljer: https://in.relation.to/2021/01/06/hibernate-validator-700-62-final-released/,
 
-CVE: https://in.relation.to/2020/05/07/hibernate-validator-615-6020-released/
+CVE: https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-9296
 
-### Netflix
-
-* https://securitylab.github.com/advisories/GHSL-2020-027-netflix-conductor/
-* https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-9296
+Netflix: https://securitylab.github.com/advisories/GHSL-2020-027-netflix-conductor/
 
 ### Tidlig oppdagelse
 
