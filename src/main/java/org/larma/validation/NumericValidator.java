@@ -11,6 +11,19 @@ public class NumericValidator implements ConstraintValidator<Numeric, String> {
 
     @Override
     public boolean isValid(String s, ConstraintValidatorContext constraintValidatorContext) {
-        return false;
+        if (s == null || s.trim().length() == 0 ) {
+            return true;
+        }
+
+        boolean valid = s.chars().allMatch(Character::isDigit);
+
+        if (!valid) {
+            constraintValidatorContext.disableDefaultConstraintViolation();
+            constraintValidatorContext
+                    .buildConstraintViolationWithTemplate("Fikk '" + s + "' der numerisk verdi var forventet.")
+                    .addConstraintViolation();
+        }
+
+        return valid;
     }
 }
